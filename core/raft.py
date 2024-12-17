@@ -95,8 +95,8 @@ class RAFT(
         if flow_gt is None:
             flow_gt = torch.zeros(N, 2, H, W, device=image1.device)
 
-        image1 = 2 * (image1 / 255.0) - 1.0
-        image2 = 2 * (image2 / 255.0) - 1.0
+        # image1 = 2 * (image1 / 255.0) - 1.0
+        # image2 = 2 * (image2 / 255.0) - 1.0
         image1 = image1.contiguous()
         image2 = image2.contiguous()
         flow_predictions = []
@@ -121,13 +121,13 @@ class RAFT(
         flow_predictions.append(flow_up)
         info_predictions.append(info_up)
 
-        if self.args.iters > 0:
-            # run the feature network
-            fmap1_8x = self.fnet(image1)
-            fmap2_8x = self.fnet(image2)
-            corr_fn = CorrBlock(fmap1_8x, fmap2_8x, self.args)
+        # if self.args.iters > 0:
+        # run the feature network
+        fmap1_8x = self.fnet(image1)
+        fmap2_8x = self.fnet(image2)
+        corr_fn = CorrBlock(fmap1_8x, fmap2_8x, self.args)
 
-        for itr in range(iters):
+        for _ in range(iters):
             N, _, H, W = flow_8x.shape
             flow_8x = flow_8x.detach()
             coords2 = (coords_grid(N, H, W, device=image1.device) + flow_8x).detach()

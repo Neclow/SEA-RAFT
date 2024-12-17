@@ -6,6 +6,8 @@ from .utils.utils import bilinear_sampler
 
 try:
     import alt_cuda_corr
+
+    print("alt_cuda_corr successfully loaded")
 except ImportError:
     # alt_cuda_corr is not compiled
     pass

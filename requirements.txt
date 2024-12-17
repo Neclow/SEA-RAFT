@@ -11,3 +11,4 @@ tqdm
 einops
 safetensors
 huggingface_hub
+ptlflow

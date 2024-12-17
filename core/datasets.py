@@ -15,7 +15,7 @@ from torch.utils import data
 from .utils import frame_utils
 from .utils.augmentor import FlowAugmentor, SparseFlowAugmentor
 from .utils.utils import induced_flow, check_cycle_consistency
-from ..ddp_utils import *
+from ..ddp_utils import calc_num_workers, init_fn
 
 
 class FlowDataset(data.Dataset):
